@@ -15,7 +15,7 @@ Static Function SetAssocValue(aArray, cKey, xValue)
         EndIf
     Next
     AAdd(aArray, {cKey, xValue})
-Return
+Return              
 
 Static Function GetAssocValue(aArray, cKey)
     Local n
@@ -158,7 +158,7 @@ User Function ZIMPCIS()
                 Else
                     FWLogMsg("Chave de tributo vazia para CIT. Linha: " + cLinha)
                 EndIf
-            EndIf
+            EndIfS
 
         Case cTipo == "CIU"
             cChaveTrib := cUltimoTrib
