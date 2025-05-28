@@ -87,7 +87,7 @@ User Function ZIMPCIS()
     Local cUltimoTrib := ""
     Local cChaveTrib := ""
     Local nLin     := 0
-    Local cArquivo := "/tst/imp.txt"
+    Local cArquivo := "/impncm/impncm.txt"
 
     Local aLinhas := {}
     Local cConteudo := MemoRead(cArquivo)
