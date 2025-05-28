@@ -46,35 +46,34 @@ Static Function SplitPreservandoVazios(cLinha)
     AAdd(aResult, cCampo) // último campo
 Return aResult
 
-
-Static Function buscaTxt()
-    Local aArea   := GetArea()
-    Local cDirIni := "C:" // ERRO!!
-    Local cTipArq := "Todas extensões (*.*) | Arquivos texto (*.txt) | Arquivos com separações (*.csv)"
-    Local cTitulo := "Seleção de Arquivos para Processamento"
-    Local lSalvar := .F.
-    Local cArqSel := ""
+// Static Function buscaTxt()
+//     Local aArea   := GetArea()
+//     Local cDirIni := "C:\" // ERRO!!
+//     Local cTipArq := "Todas extensões (*.*) | Arquivos texto (*.txt) | Arquivos com separações (*.csv)"
+//     Local cTitulo := "Seleção de Arquivos para Processamento"
+//     Local lSalvar := .F.
+//     Local cArqSel := ""
  
-    //Se não estiver sendo executado via job
-    If ! IsBlind()
+//     //Se não estiver sendo executado via job
+//     If ! IsBlind()
  
-        //Chama a função para buscar arquivos
-        cArqSel := tFileDialog(;
-            cTipArq,;  // Filtragem de tipos de arquivos que serão selecionados
-            cTitulo,;  // Título da Janela para seleção dos arquivos
-            ,;         // Compatibilidade
-            cDirIni,;  // Diretório inicial da busca de arquivos
-            lSalvar,;  // Se for .T., será uma Save Dialog, senão será Open Dialog
-            ;          // Se não passar parâmetro, irá pegar apenas 1 arquivo; Se for informado GETF_MULTISELECT será possível pegar mais de 1 arquivo; Se for informado GETF_RETDIRECTORY será possível selecionar o diretório
-        )
+//         //Chama a função para buscar arquivos
+//         cArqSel := tFileDialog(;
+//             cTipArq,;  // Filtragem de tipos de arquivos que serão selecionados
+//             cTitulo,;  // Título da Janela para seleção dos arquivos
+//             ,;         // Compatibilidade
+//             cDirIni,;  // Diretório inicial da busca de arquivos
+//             lSalvar,;  // Se for .T., será uma Save Dialog, senão será Open Dialog
+//             ;          // Se não passar parâmetro, irá pegar apenas 1 arquivo; Se for informado GETF_MULTISELECT será possível pegar mais de 1 arquivo; Se for informado GETF_RETDIRECTORY será possível selecionar o diretório
+//         )
  
-        If ! Empty(cArqSel)
-            MsgInfo("O arquivo selecionado foi: " + cArqSel, "Atenção")
-        EndIf
-    EndIf
+//         If ! Empty(cArqSel)
+//             MsgInfo("O arquivo selecionado foi: " + cArqSel, "Atenção")
+//         EndIf
+//     EndIf
  
-    RestArea(aArea)
-Return
+//     RestArea(aArea)
+// Return
 
 User Function ZIMPCIS()
     Local aArea    := GetArea()
@@ -88,7 +87,7 @@ User Function ZIMPCIS()
     Local cUltimoTrib := ""
     Local cChaveTrib := ""
     Local nLin     := 0
-    Local cArquivo := buscaTxt()
+    Local cArquivo := "/tst/imp.txt"
 
     Local aLinhas := {}
     Local cConteudo := MemoRead(cArquivo)
@@ -96,7 +95,7 @@ User Function ZIMPCIS()
     Local aTribCIT := {}
     Local aTribNCM := {}
 
-    
+
     If ValType(cConteudo) == "C"
         aLinhas := StrTokArr(cConteudo, Chr(13) + Chr(10))
         If Len(aLinhas) <= 1
@@ -110,7 +109,6 @@ User Function ZIMPCIS()
     DbSelectArea("CIS")
     DbSelectArea("CIT")
     DbSelectArea("CIU")
-
 
     For nLin := 1 To Len(aLinhas)
         cLinha := AllTrim(aLinhas[nLin])
@@ -166,28 +164,29 @@ User Function ZIMPCIS()
             cChaveTrib := cUltimoTrib
             cID_CIT := GetAssocValue(aTribCIT, cChaveTrib)
             cCodNCM := GetAssocValue(aTribNCM, cChaveTrib)
-                CIU->(RecLock("CIU", .T.))
-                CIU->CIU_FILIAL := xFilial("CIU")
-                CIU->CIU_ID     := ZGerUUID(nLin)
-                CIU->CIU_IDNCM  := cID_CIT
-                CIU->CIU_UFORI  := AllTrim(aCols[2])
-                CIU->CIU_UFDEST := AllTrim(aCols[3])
-                CIU->CIU_VIGINI  := StoD(AllTrim(aCols[4]))
-                CIU->CIU_VIGFIM := StoD(AllTrim(aCols[5]))
-                CIU->CIU_ORIGEM := AllTrim(aCols[6])
-                CIU->CIU_MARGEM := Val(StrTran(aCols[7], ",", "."))
-                CIU->CIU_MVAAUX := Val(StrTran(aCols[8], ",", "."))
-                CIU->CIU_VLPAUT := Val(StrTran(aCols[9], ",", "."))
-                CIU->CIU_UM     := AllTrim(aCols[10])
-                CIU->CIU_MAJORA := Val(StrTran(aCols[11], ",", "."))
-                CIU->CIU_MJAUX := Val(StrTran(aCols[12], ",", "."))
-                CIU->CIU_TIPO   := AllTrim(aCols[13])
-                CIU->CIU_ITEM   := AllTrim(aCols[14])
-                CIU->CIU_NCM    := cCodNCM
-                CIU->CIU_TRIB   := cChaveTrib
-                CIU->CIU_CEST   := AllTrim(aCols[15])
-                CIU->CIU_ALIQTR := Val(StrTran(aCols[16], ",", "."))
-                CIU->(MsUnlock())
+
+            CIU->(RecLock("CIU", .T.))
+            CIU->CIU_FILIAL := xFilial("CIU")
+            CIU->CIU_ID     := ZGerUUID(nLin)
+            CIU->CIU_IDNCM  := cID_CIT
+            CIU->CIU_ITEM   := AllTrim(aCols[2])
+            CIU->CIU_TIPO   := AllTrim(aCols[3])
+            CIU->CIU_UFORI  := AllTrim(aCols[4])
+            CIU->CIU_UFDEST := AllTrim(aCols[5])
+            CIU->CIU_VIGINI  := StoD(AllTrim(aCols[6]))
+            CIU->CIU_VIGFIM := StoD(AllTrim(aCols[7]))
+            CIU->CIU_ORIGEM := AllTrim(aCols[8])
+            CIU->CIU_CEST   := AllTrim(aCols[9])
+            CIU->CIU_MARGEM := Val(StrTran(aCols[10], ",", "."))
+            CIU->CIU_MVAAUX := Val(StrTran(aCols[11], ",", "."))
+            CIU->CIU_UM     := AllTrim(aCols[12])
+            CIU->CIU_VLPAUT := Val(StrTran(aCols[13], ",", "."))
+            CIU->CIU_MAJORA := Val(StrTran(aCols[14], ",", "."))
+            CIU->CIU_MJAUX := Val(StrTran(aCols[15], ",", "."))
+            CIU->CIU_ALIQTR := Val(StrTran(aCols[16], ",", "."))
+            CIU->CIU_NCM    := cCodNCM
+            CIU->CIU_TRIB   := cChaveTrib
+            CIU->(MsUnlock())
         EndCase
     Next
 
