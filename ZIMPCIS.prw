@@ -1,6 +1,18 @@
 #Include "Protheus.ch"
 #Include "RwMake.ch"
 
+/*/{Protheus.doc} CT102BUT
+
+Realiza a importação de dados para as tabelas CIS, CIT e CIU da rotina 
+Regras por NCM do novo configurador de tributos Protheus.
+
+@type function
+@author Joao Pedro Campelo, Rychelle Caminha
+@since 04/06/2025
+
+https://github.com/PedroRCampelo/ZIMPCIS
+/*/
+
 // Gera ID com base na data/hora + index
 Static Function ZGerUUID(nIndex)
     Return DToS(Date()) + StrTran(Time(), ":", "") + StrZero(nIndex, 4)
@@ -43,7 +55,7 @@ Static Function SplitPreservandoVazios(cLinha)
         EndIf
         n++
     EndDo
-    AAdd(aResult, cCampo) // último campo
+    AAdd(aResult, cCampo)
 Return aResult
 
 User Function ZIMPCIS()
