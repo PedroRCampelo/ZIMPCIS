@@ -46,35 +46,6 @@ Static Function SplitPreservandoVazios(cLinha)
     AAdd(aResult, cCampo) // último campo
 Return aResult
 
-// Static Function buscaTxt()
-//     Local aArea   := GetArea()
-//     Local cDirIni := "C:\" // ERRO!!
-//     Local cTipArq := "Todas extensões (*.*) | Arquivos texto (*.txt) | Arquivos com separações (*.csv)"
-//     Local cTitulo := "Seleção de Arquivos para Processamento"
-//     Local lSalvar := .F.
-//     Local cArqSel := ""
- 
-//     //Se não estiver sendo executado via job
-//     If ! IsBlind()
- 
-//         //Chama a função para buscar arquivos
-//         cArqSel := tFileDialog(;
-//             cTipArq,;  // Filtragem de tipos de arquivos que serão selecionados
-//             cTitulo,;  // Título da Janela para seleção dos arquivos
-//             ,;         // Compatibilidade
-//             cDirIni,;  // Diretório inicial da busca de arquivos
-//             lSalvar,;  // Se for .T., será uma Save Dialog, senão será Open Dialog
-//             ;          // Se não passar parâmetro, irá pegar apenas 1 arquivo; Se for informado GETF_MULTISELECT será possível pegar mais de 1 arquivo; Se for informado GETF_RETDIRECTORY será possível selecionar o diretório
-//         )
- 
-//         If ! Empty(cArqSel)
-//             MsgInfo("O arquivo selecionado foi: " + cArqSel, "Atenção")
-//         EndIf
-//     EndIf
- 
-//     RestArea(aArea)
-// Return
-
 User Function ZIMPCIS()
     Local aArea    := GetArea()
     Local cLinha   := ""
