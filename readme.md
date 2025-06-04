@@ -24,7 +24,7 @@ Para utilizar, basta aplicar o fonte na base, criar uma pasta no FTP(Caso cloud)
 
 - Aplicar o fonte
 - Criar pasta "impncm"
-- Salvar como "impncm.txt"
+- Salvar TXT dentro da pasta como "impncm.txt"
 
 Esse fonte é robusto e flexível, suportando múltiplos CIUs por CIT, e múltiplos CITs por CIS.
 

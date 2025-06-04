@@ -11,6 +11,7 @@ Regras por NCM do novo configurador de tributos Protheus.
 @since 04/06/2025
 
 https://github.com/PedroRCampelo/ZIMPCIS
+
 /*/
 
 // Gera ID com base na data/hora + index
@@ -77,6 +78,9 @@ User Function ZIMPCIS()
 
     Local aTribCIT := {}
     Local aTribNCM := {}
+
+
+	cDiret	:= TFileDialog( "Arquivo CSV (*.csv) | Arquivos texto (*.txt)" ,,,, .F., /*GETF_MULTISELECT*/ )
 
 
     If ValType(cConteudo) == "C"
