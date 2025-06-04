@@ -158,7 +158,7 @@ User Function ZIMPCIS()
                 Else
                     FWLogMsg("Chave de tributo vazia para CIT. Linha: " + cLinha)
                 EndIf
-            EndIfS
+            EndIf
 
         Case cTipo == "CIU"
             cChaveTrib := cUltimoTrib
