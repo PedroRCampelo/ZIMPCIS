@@ -79,10 +79,6 @@ User Function ZIMPCIS()
     Local aTribCIT := {}
     Local aTribNCM := {}
 
-
-	cDiret	:= TFileDialog( "Arquivo CSV (*.csv) | Arquivos texto (*.txt)" ,,,, .F., /*GETF_MULTISELECT*/ )
-
-
     If ValType(cConteudo) == "C"
         aLinhas := StrTokArr(cConteudo, Chr(13) + Chr(10))
         If Len(aLinhas) <= 1
