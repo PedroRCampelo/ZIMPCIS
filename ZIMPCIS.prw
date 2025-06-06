@@ -15,6 +15,31 @@ https://github.com/PedroRCampelo/ZIMPCIS
 /*/
 
 // Gera ID com base na data/hora + index
+
+User Function ZIMPCIS()	
+
+Local aSays    	:= {}
+Local aButtons 	:= {}
+Local cTitulo	:= "Importação de Regra por NCM"
+Local nOpcao 	:= 0
+
+    AADD(aSays,OemToAnsi("Esta rotina tem o objetivo de importar o cadastro de Regra por NCM através de um .txt"))	
+    AADD(aSays,"") 
+	AADD(aSays,OemToAnsi("Separe os dados com ponto e virgula (;)"))	
+    AADD(aSays,"") 
+    AADD(aSays,OemToAnsi("Link do manual: github.com/PedroRCampelo/ZIMPCIS"))
+    
+    AADD(aButtons, { 1,.T.,{|o| nOpcao:= 1,o:oWnd:End()} } )
+    AADD(aButtons, { 2,.T.,{|o| nOpcao:= 2,o:oWnd:End()} } )
+    
+    FormBatch( cTitulo, aSays, aButtons,,230,530 )
+
+    if nOpcao == 1
+        Processa({|| ExecBlock("ZNCM",.F.,.F.,{"01","X"}) }, "Importador de Regras por NCM")
+    endif
+
+Return
+
 Static Function ZGerUUID(nIndex)
     Return DToS(Date()) + StrTran(Time(), ":", "") + StrZero(nIndex, 4)
 
@@ -59,7 +84,7 @@ Static Function SplitPreservandoVazios(cLinha)
     AAdd(aResult, cCampo)
 Return aResult
 
-User Function ZIMPCIS()
+User Function ZNCM()
     Local aArea    := GetArea()
     Local cLinha   := ""
     Local aCols    := {}
@@ -71,13 +96,15 @@ User Function ZIMPCIS()
     Local cUltimoTrib := ""
     Local cChaveTrib := ""
     Local nLin     := 0
-    Local cArquivo := "/impncm/impncm.txt"
-
-    Local aLinhas := {}
-    Local cConteudo := MemoRead(cArquivo)
 
     Local aTribCIT := {}
     Local aTribNCM := {}
+
+    Local cDiret	:= TFileDialog( "Arquivos texto (*.txt)" ,,,, .F., /*GETF_MULTISELECT*/ )
+    Local cArquivo := cDiret
+
+    Local aLinhas := {}
+    Local cConteudo := MemoRead(cArquivo)
 
     If ValType(cConteudo) == "C"
         aLinhas := StrTokArr(cConteudo, Chr(13) + Chr(10))

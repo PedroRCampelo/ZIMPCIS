@@ -17,21 +17,22 @@ Exemplo de estrutura:
 
 Também foi criada uma planilha em Excel para facilitar o preenchimento pelo cliente:
 
-[![Screenshot-2025-05-28-at-11-56-31.png](https://i.postimg.cc/VLq4GLft/Screenshot-2025-05-28-at-11-56-31.png)](https://postimg.cc/56twjJF9)
+[![Screenshot-2025-06-06-124535.png](https://i.postimg.cc/V6BsyY1R/Screenshot-2025-06-06-124535.png)](https://postimg.cc/bDrfkfZD)
+
 ## Como utilizar?
 
-Para utilizar, basta aplicar o fonte na base, criar uma pasta no FTP(Caso cloud) ou Protheus Data (Caso base local) chamada "impncm", e salvar o arquivo .txt como "impncm"
-
 - Aplicar o fonte
-- Criar pasta "impncm"
-- Salvar TXT dentro da pasta como "impncm.txt"
+- Executar função ZIMPCIS (Criar menu como boa prática)
+- Selecionar arquivo TXT
+- O WebAgent deve estar ligado
 
 Esse fonte é robusto e flexível, suportando múltiplos CIUs por CIT, e múltiplos CITs por CIS.
 
-Para executar a importação, execute o fonte em um menu ou na rotina de Executar programas.
-
+[![Screenshot-2025-06-06-123056.png](https://i.postimg.cc/FRxT4m3V/Screenshot-2025-06-06-123056.png)](https://postimg.cc/HcVwwqSr)
+[![Screenshot-2025-06-06-123239.png](https://i.postimg.cc/jq45Jjz4/Screenshot-2025-06-06-123239.png)](https://postimg.cc/4nnZDs2Y)
 [![Screenshot-2025-05-28-at-12-02-52.png](https://i.postimg.cc/44zzZLDk/Screenshot-2025-05-28-at-12-02-52.png)](https://postimg.cc/nMhsGkV0)
+
 ## Melhorias futuras
 
+- Utilizar função para leitura de arquivo local, mesmo estando no Protheus Web - Realizado ✅
 - Valida se o NCM já foi preenchido anteriormente e barra a duplicidade na importação
-- Utilizar função para leitura de arquivo local, mesmo estando no Protheus Web
