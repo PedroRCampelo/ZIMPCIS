@@ -5,13 +5,24 @@ Realiza a importação de dados para as tabelas CIS, CIT e CIU da rotina Regras 
 
 O processo lê um arquivo .TXT estruturado por blocos de informações, agrupando registros do tipo CIS, CIT e CIU. 
 
+## ✅ Vantagens de utilizar esta funcionalidade
+
+- **Agilidade na configuração tributária:** permite cadastrar regras em lote, evitando trabalho manual linha a linha.
+- **Suporte a múltiplas exceções:** permite múltiplos CIUs por CIT, e múltiplos CITs por CIS.
+- **Interface amigável:** Permite o preenchimento de forma mais organizada via Excel
+- **Compatível com Protheus Web:** a rotina funciona corretamente mesmo em ambiente WebAgent.
+
+## Clientes que já utilizaram:
+- **Requim**
+- **CID (Consórcio Centro de Convenções)**
+
 ## Estrutura do arquivo
-O arquivo de importação é um .TXT com linhas separadas por ponto e vírgula (;).
+O arquivo de importação é um `.TXT` com linhas separadas por ponto e vírgula `;`.
+
 Cada linha pode conter um dos seguintes identificadores no primeiro campo:
-- CIS: Define o NCM a ser cadastrado.
-- CIT: Define a tributação associada ao NCM.
-- CIU: Define as exceções fiscais associadas à tributação (CIT).
-Exemplo de estrutura:
+- `CIS`: Define o NCM a ser cadastrado.
+- `CIT`: Define a tributação associada ao NCM.
+- `CIU`: Define as exceções fiscais associadas à tributação (CIT).
 
 [![Screenshot-2025-05-28-at-11-50-46.png](https://i.postimg.cc/Jn2JDM0f/Screenshot-2025-05-28-at-11-50-46.png)](https://postimg.cc/N9RLZh1D)
 
